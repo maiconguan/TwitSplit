@@ -9,9 +9,13 @@
 import UIKit
 import TwitterKit
 
-class ViewController: TWTRTimelineViewController {
+class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate {
 
     @IBOutlet weak var loginButton: UIBarButtonItem!
+    
+    @IBOutlet weak var composeButton: UIBarButtonItem!
+    
+    var currentSession:TWTRSession? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,8 @@ class ViewController: TWTRTimelineViewController {
             if (session != nil) {
                 print("signed in as \(session?.userName)");
                 
+                self.currentSession = session
+                
                 DispatchQueue.main.async(execute: {
                     self.title = (session?.userName)
                     
@@ -43,14 +49,47 @@ class ViewController: TWTRTimelineViewController {
                 
                 
             } else {
-                print("error: \(error?.localizedDescription)");
+                print("error: \(error?.localizedDescription)")
             }
         })
     }
     
+    func postTweet(message: String) {
+        // before posting tweet, the message must be slpited.
+        let client = TWTRAPIClient(userID: self.currentSession?.userID)
+        client.sendTweet(withText: message) { (tweet, error) in
+            if ((tweet) != nil) {
+                print("Successfully composed Tweet")
+            } else {
+                print("Error : \(error?.localizedDescription)")
+            }
+        }
+    }
+    
+    //handle segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToComposing" {
+            let vc = segue.destination as! ComposeViewController
+            vc.composingDelegate = self
+        }
+    }
+    
+    // handle compose wiew controler delegate
+    func composingCompleted(message: String) {
+        print("composingCompleted: " + message)
+
+        postTweet(message: message)
+    }
+    
+    // handle ibaction here
     @IBAction func loginButtonPressed(_ sender: Any) {
         loginTwitter()
     }
 
+    @IBAction func composeButtonPressed(_ sender: Any) {
+        print("composeButtonPressed");
+
+    }
+    
 }
 
