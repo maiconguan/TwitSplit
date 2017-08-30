@@ -7,15 +7,36 @@
 //
 
 import UIKit
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var consumerKey: String = ""
+    var consumerSecret: String = ""
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        self.window?.backgroundColor = UIColor.white
+        
+        // retrieve twitter keys from Twitter.plist in app bundle
+        if let url = Bundle.main.url(forResource:"Twitter", withExtension: "plist") {
+            do {
+                let data = try Data(contentsOf:url)
+                let list = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as! [String:Any]
+                consumerKey = list["consumerKey"] as! String
+                consumerSecret = list["consumerSecret"] as! String
+            } catch {
+                print(error)
+            }
+        }
+        
+        
+        Twitter.sharedInstance().start(withConsumerKey:consumerKey, consumerSecret:consumerSecret)
+        
         return true
     }
 
@@ -41,6 +62,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return Twitter.sharedInstance().application(app, open: url, options: options)
+    }
 
 }
 
