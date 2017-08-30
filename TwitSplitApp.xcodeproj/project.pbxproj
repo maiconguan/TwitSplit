@@ -1,0 +1,431 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D2677A471F5673A500F6F1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2677A461F5673A500F6F1D9 /* AppDelegate.swift */; };
+		D2677A491F5673A500F6F1D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2677A481F5673A500F6F1D9 /* ViewController.swift */; };
+		D2677A4C1F5673A500F6F1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2677A4A1F5673A500F6F1D9 /* Main.storyboard */; };
+		D2677A4E1F5673A500F6F1D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2677A4D1F5673A500F6F1D9 /* Assets.xcassets */; };
+		D2677A511F5673A500F6F1D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2677A4F1F5673A500F6F1D9 /* LaunchScreen.storyboard */; };
+		D2677A5C1F5673A500F6F1D9 /* TwitSplitAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2677A5B1F5673A500F6F1D9 /* TwitSplitAppTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2677A581F5673A500F6F1D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2677A3B1F5673A500F6F1D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2677A421F5673A500F6F1D9;
+			remoteInfo = TwitSplitApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D2677A431F5673A500F6F1D9 /* TwitSplitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitSplitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2677A461F5673A500F6F1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D2677A481F5673A500F6F1D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D2677A4B1F5673A500F6F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D2677A4D1F5673A500F6F1D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D2677A501F5673A500F6F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D2677A521F5673A500F6F1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2677A571F5673A500F6F1D9 /* TwitSplitAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitSplitAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2677A5B1F5673A500F6F1D9 /* TwitSplitAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitSplitAppTests.swift; sourceTree = "<group>"; };
+		D2677A5D1F5673A500F6F1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2677A401F5673A500F6F1D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2677A541F5673A500F6F1D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D2677A3A1F5673A500F6F1D9 = {
+			isa = PBXGroup;
+			children = (
+				D2677A451F5673A500F6F1D9 /* TwitSplitApp */,
+				D2677A5A1F5673A500F6F1D9 /* TwitSplitAppTests */,
+				D2677A441F5673A500F6F1D9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2677A441F5673A500F6F1D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2677A431F5673A500F6F1D9 /* TwitSplitApp.app */,
+				D2677A571F5673A500F6F1D9 /* TwitSplitAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2677A451F5673A500F6F1D9 /* TwitSplitApp */ = {
+			isa = PBXGroup;
+			children = (
+				D2677A461F5673A500F6F1D9 /* AppDelegate.swift */,
+				D2677A481F5673A500F6F1D9 /* ViewController.swift */,
+				D2677A4A1F5673A500F6F1D9 /* Main.storyboard */,
+				D2677A4D1F5673A500F6F1D9 /* Assets.xcassets */,
+				D2677A4F1F5673A500F6F1D9 /* LaunchScreen.storyboard */,
+				D2677A521F5673A500F6F1D9 /* Info.plist */,
+			);
+			path = TwitSplitApp;
+			sourceTree = "<group>";
+		};
+		D2677A5A1F5673A500F6F1D9 /* TwitSplitAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2677A5B1F5673A500F6F1D9 /* TwitSplitAppTests.swift */,
+				D2677A5D1F5673A500F6F1D9 /* Info.plist */,
+			);
+			path = TwitSplitAppTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2677A421F5673A500F6F1D9 /* TwitSplitApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2677A601F5673A500F6F1D9 /* Build configuration list for PBXNativeTarget "TwitSplitApp" */;
+			buildPhases = (
+				D2677A3F1F5673A500F6F1D9 /* Sources */,
+				D2677A401F5673A500F6F1D9 /* Frameworks */,
+				D2677A411F5673A500F6F1D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TwitSplitApp;
+			productName = TwitSplitApp;
+			productReference = D2677A431F5673A500F6F1D9 /* TwitSplitApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D2677A561F5673A500F6F1D9 /* TwitSplitAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2677A631F5673A500F6F1D9 /* Build configuration list for PBXNativeTarget "TwitSplitAppTests" */;
+			buildPhases = (
+				D2677A531F5673A500F6F1D9 /* Sources */,
+				D2677A541F5673A500F6F1D9 /* Frameworks */,
+				D2677A551F5673A500F6F1D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2677A591F5673A500F6F1D9 /* PBXTargetDependency */,
+			);
+			name = TwitSplitAppTests;
+			productName = TwitSplitAppTests;
+			productReference = D2677A571F5673A500F6F1D9 /* TwitSplitAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2677A3B1F5673A500F6F1D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Mai Cong Uan";
+				TargetAttributes = {
+					D2677A421F5673A500F6F1D9 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = U2P69NR7Z3;
+						ProvisioningStyle = Automatic;
+					};
+					D2677A561F5673A500F6F1D9 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = U2P69NR7Z3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D2677A421F5673A500F6F1D9;
+					};
+				};
+			};
+			buildConfigurationList = D2677A3E1F5673A500F6F1D9 /* Build configuration list for PBXProject "TwitSplitApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D2677A3A1F5673A500F6F1D9;
+			productRefGroup = D2677A441F5673A500F6F1D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2677A421F5673A500F6F1D9 /* TwitSplitApp */,
+				D2677A561F5673A500F6F1D9 /* TwitSplitAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2677A411F5673A500F6F1D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2677A511F5673A500F6F1D9 /* LaunchScreen.storyboard in Resources */,
+				D2677A4E1F5673A500F6F1D9 /* Assets.xcassets in Resources */,
+				D2677A4C1F5673A500F6F1D9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2677A551F5673A500F6F1D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2677A3F1F5673A500F6F1D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2677A491F5673A500F6F1D9 /* ViewController.swift in Sources */,
+				D2677A471F5673A500F6F1D9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2677A531F5673A500F6F1D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2677A5C1F5673A500F6F1D9 /* TwitSplitAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2677A591F5673A500F6F1D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2677A421F5673A500F6F1D9 /* TwitSplitApp */;
+			targetProxy = D2677A581F5673A500F6F1D9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D2677A4A1F5673A500F6F1D9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2677A4B1F5673A500F6F1D9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D2677A4F1F5673A500F6F1D9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2677A501F5673A500F6F1D9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2677A5E1F5673A500F6F1D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D2677A5F1F5673A500F6F1D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2677A611F5673A500F6F1D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = U2P69NR7Z3;
+				INFOPLIST_FILE = TwitSplitApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uan.mai.TwitSplitApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D2677A621F5673A500F6F1D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = U2P69NR7Z3;
+				INFOPLIST_FILE = TwitSplitApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uan.mai.TwitSplitApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		D2677A641F5673A500F6F1D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = U2P69NR7Z3;
+				INFOPLIST_FILE = TwitSplitAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uan.mai.TwitSplitAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TwitSplitApp.app/TwitSplitApp";
+			};
+			name = Debug;
+		};
+		D2677A651F5673A500F6F1D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = U2P69NR7Z3;
+				INFOPLIST_FILE = TwitSplitAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uan.mai.TwitSplitAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TwitSplitApp.app/TwitSplitApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2677A3E1F5673A500F6F1D9 /* Build configuration list for PBXProject "TwitSplitApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2677A5E1F5673A500F6F1D9 /* Debug */,
+				D2677A5F1F5673A500F6F1D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2677A601F5673A500F6F1D9 /* Build configuration list for PBXNativeTarget "TwitSplitApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2677A611F5673A500F6F1D9 /* Debug */,
+				D2677A621F5673A500F6F1D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2677A631F5673A500F6F1D9 /* Build configuration list for PBXNativeTarget "TwitSplitAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2677A641F5673A500F6F1D9 /* Debug */,
+				D2677A651F5673A500F6F1D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2677A3B1F5673A500F6F1D9 /* Project object */;
+}
