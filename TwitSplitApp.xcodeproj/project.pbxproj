@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3026FBFE26B354133D0B16F5 /* Pods_TwitSplitApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFC90A62637FDFBB1C28B478 /* Pods_TwitSplitApp.framework */; };
 		BA29FBF8FF75FAD703719E51 /* Pods_TwitSplitAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DCF6E6440283E1268547FE /* Pods_TwitSplitAppTests.framework */; };
+		D210E4381F57E2C1006B487C /* Int+Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D210E4371F57E2C1006B487C /* Int+Shortcuts.swift */; };
 		D2677A471F5673A500F6F1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2677A461F5673A500F6F1D9 /* AppDelegate.swift */; };
 		D2677A491F5673A500F6F1D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2677A481F5673A500F6F1D9 /* ViewController.swift */; };
 		D2677A4C1F5673A500F6F1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2677A4A1F5673A500F6F1D9 /* Main.storyboard */; };
@@ -16,6 +17,9 @@
 		D2677A511F5673A500F6F1D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2677A4F1F5673A500F6F1D9 /* LaunchScreen.storyboard */; };
 		D2677A5C1F5673A500F6F1D9 /* TwitSplitAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2677A5B1F5673A500F6F1D9 /* TwitSplitAppTests.swift */; };
 		D2677A671F56808700F6F1D9 /* Twitter.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2677A661F56808700F6F1D9 /* Twitter.plist */; };
+		D2677A691F569A1000F6F1D9 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2677A681F569A1000F6F1D9 /* ComposeViewController.swift */; };
+		D2677A6B1F56DEAB00F6F1D9 /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2677A6A1F56DEAB00F6F1D9 /* Contants.swift */; };
+		D2677A6D1F56E03F00F6F1D9 /* String+Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2677A6C1F56E03F00F6F1D9 /* String+Shortcuts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,7 @@
 		795A5568538269B7FDA6576E /* Pods-TwitSplitAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitSplitAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitSplitAppTests/Pods-TwitSplitAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A49043F9E156B131F49F3E22 /* Pods-TwitSplitApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitSplitApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitSplitApp/Pods-TwitSplitApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CFC90A62637FDFBB1C28B478 /* Pods_TwitSplitApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitSplitApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D210E4371F57E2C1006B487C /* Int+Shortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Shortcuts.swift"; sourceTree = "<group>"; };
 		D2677A431F5673A500F6F1D9 /* TwitSplitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitSplitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2677A461F5673A500F6F1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2677A481F5673A500F6F1D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +51,9 @@
 		D2677A5B1F5673A500F6F1D9 /* TwitSplitAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitSplitAppTests.swift; sourceTree = "<group>"; };
 		D2677A5D1F5673A500F6F1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2677A661F56808700F6F1D9 /* Twitter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Twitter.plist; sourceTree = "<group>"; };
+		D2677A681F569A1000F6F1D9 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		D2677A6A1F56DEAB00F6F1D9 /* Contants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
+		D2677A6C1F56E03F00F6F1D9 /* String+Shortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Shortcuts.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,11 +121,15 @@
 			children = (
 				D2677A461F5673A500F6F1D9 /* AppDelegate.swift */,
 				D2677A481F5673A500F6F1D9 /* ViewController.swift */,
-				D2677A4A1F5673A500F6F1D9 /* Main.storyboard */,
+				D2677A681F569A1000F6F1D9 /* ComposeViewController.swift */,
 				D2677A4D1F5673A500F6F1D9 /* Assets.xcassets */,
+				D2677A4A1F5673A500F6F1D9 /* Main.storyboard */,
 				D2677A4F1F5673A500F6F1D9 /* LaunchScreen.storyboard */,
 				D2677A521F5673A500F6F1D9 /* Info.plist */,
 				D2677A661F56808700F6F1D9 /* Twitter.plist */,
+				D2677A6A1F56DEAB00F6F1D9 /* Contants.swift */,
+				D2677A6C1F56E03F00F6F1D9 /* String+Shortcuts.swift */,
+				D210E4371F57E2C1006B487C /* Int+Shortcuts.swift */,
 			);
 			path = TwitSplitApp;
 			sourceTree = "<group>";
@@ -346,8 +358,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2677A691F569A1000F6F1D9 /* ComposeViewController.swift in Sources */,
+				D2677A6D1F56E03F00F6F1D9 /* String+Shortcuts.swift in Sources */,
 				D2677A491F5673A500F6F1D9 /* ViewController.swift in Sources */,
 				D2677A471F5673A500F6F1D9 /* AppDelegate.swift in Sources */,
+				D2677A6B1F56DEAB00F6F1D9 /* Contants.swift in Sources */,
+				D210E4381F57E2C1006B487C /* Int+Shortcuts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
