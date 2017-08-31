@@ -34,7 +34,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     }
     @IBAction func tweetButtonPressed(_ sender: Any) {
         if((composingDelegate) != nil) {
-            composingDelegate?.composingCompleted(message: textView.text)
+            composingDelegate?.composingCompleted(message: textView.text.trimmingCharacters(in: .whitespacesAndNewlines))
         }
         
         self.dismiss(animated: true) {
@@ -50,10 +50,11 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
 
     // textview delegate
     func textViewDidChange(_ textView: UITextView) {
-        let textLength = Int(textView.text.characters.count)
         
-        tweetButton.isEnabled = (textLength > 0)
+        let trimmedString = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        numberLabel.text = String(textView.text.characters.count)
+        tweetButton.isEnabled = (trimmedString.length() > 0)
+        
+        numberLabel.text = String(textView.text.length())
     }
 }
