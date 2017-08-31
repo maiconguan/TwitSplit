@@ -65,18 +65,47 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
             
         }
 
+        // print out for debug
         for chunk in chunks! {
             print(chunk + "    ==> \(chunk.length())" )
         }
         
-        return
-        
         let client = TWTRAPIClient(userID: self.currentSession?.userID)
-        client.sendTweet(withText: message) { (tweet, error) in
+        
+        DispatchQueue.global().async {
+            self.postSerialTweets(messages: chunks!, currentMsg: 0, client: client, completion: { (error) in
+                if(error == nil) {
+                    print("Successfully post ALL TWEETS")
+                }
+                else {
+                    // display error 
+                    print("Error : \(error?.localizedDescription)")
+                    print("STOP posting TWEETS")
+                }
+            })
+        }
+        
+    }
+    
+    func postSerialTweets(messages:[String], currentMsg:Int, client: TWTRAPIClient, completion: @escaping ((Error?) -> Void)) {
+        
+        if currentMsg >= messages.count {
+            completion(nil)
+            
+            return
+        }
+        
+        client.sendTweet(withText: messages[currentMsg]) { (tweet, error) in
             if ((tweet) != nil) {
                 print("Successfully composed Tweet")
+                
+                DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
+                    self.postSerialTweets(messages: messages, currentMsg: currentMsg + 1, client: client, completion: completion)
+                }
+                
+                
             } else {
-                print("Error : \(error?.localizedDescription)")
+                completion(error)
             }
         }
     }
