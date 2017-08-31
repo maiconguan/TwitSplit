@@ -55,7 +55,22 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
     }
     
     func postTweet(message: String) {
-        // before posting tweet, the message must be slpited.
+        
+        let chunks = String.splitMessage(message: message)
+        
+        if chunks == nil {
+            // display error 
+            
+            return
+            
+        }
+
+        for chunk in chunks! {
+            print(chunk + "    ==> \(chunk.length())" )
+        }
+        
+        return
+        
         let client = TWTRAPIClient(userID: self.currentSession?.userID)
         client.sendTweet(withText: message) { (tweet, error) in
             if ((tweet) != nil) {
@@ -68,7 +83,7 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
     
     //handle segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueToComposing" {
+        if segue.identifier == Contants.StoryboardKeys.segueToComposing {
             let vc = segue.destination as! ComposeViewController
             vc.composingDelegate = self
         }

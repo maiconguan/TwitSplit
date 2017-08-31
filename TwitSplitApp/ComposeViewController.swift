@@ -29,6 +29,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         self.title = "Compose"
+        
+        textViewDidChange(self.textView)
     }
     @IBAction func tweetButtonPressed(_ sender: Any) {
         if((composingDelegate) != nil) {
