@@ -20,7 +20,7 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.title = "TwitSplit"
+        self.title = NSLocalizedString("TwitSplit", comment: "")
         self.tableView.isHidden = true
     }
 

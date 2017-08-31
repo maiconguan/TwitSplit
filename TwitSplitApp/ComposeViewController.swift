@@ -18,7 +18,7 @@ protocol ComposeViewControllerDelegate {
 
 
 class ComposeViewController: UIViewController, UITextViewDelegate {
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: PlaceholderTextView!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var tweetButton: UIButton!
     @IBOutlet weak var controlView: UIView!
@@ -30,11 +30,11 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         
         self.title = "Compose"
         
-        textViewDidChange(self.textView)
+        self.textView.placeholder = NSLocalizedString("What's happening", comment: "")
     }
     @IBAction func tweetButtonPressed(_ sender: Any) {
         if((composingDelegate) != nil) {
-            composingDelegate?.composingCompleted(message: textView.text.trimmingCharacters(in: .whitespacesAndNewlines))
+            composingDelegate?.composingCompleted(message: (textView.text?.trimmingCharacters(in: .whitespacesAndNewlines))!)
         }
         
         self.dismiss(animated: true) {
