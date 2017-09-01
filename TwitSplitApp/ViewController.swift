@@ -17,10 +17,13 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
     
     var currentSession:TWTRSession? = nil
     
+    var progressView:ActivityProgressView? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.title = Helper.localizedString(key: "TwitSplit")
+        
         self.tableView.isHidden = true
     }
 
@@ -58,14 +61,19 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
     }
     
     func postTweet(message: String) {
-        
-        // before chunking, should display an activity.
+        // before sending tweets, should display an activity.
+        DispatchQueue.main.async {
+            self.addActivityProgressView()
+        }
         
         let chunks = String.splitMessage(message: message)
         
         if chunks == nil {
             // remove the activity here
-            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.removeActivityProgressView()
+            }
+
             
             // display error
             self.showAlert(titleKey: "Error", messageKey: "Cannot chunk the message")
@@ -79,33 +87,46 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
             print(chunk + "    ==> \(chunk.length())" )
         }
         
+        // before sending tweets, should display an activity.
+        DispatchQueue.main.async {
+            self.progressView?.updateProgress(spending: 0, total: (chunks?.count)!)
+        }
+        
         let client = TWTRAPIClient(userID: self.currentSession?.userID)
         
         DispatchQueue.global().async {
-            self.postSerialTweets(messages: chunks!, currentMsg: 0, client: client, completion: { (error) in
+            self.postSerialTweets(messages: chunks!, currentMsg: 0, client: client,progression: { (spending, total) in
+                DispatchQueue.main.async {
+                    if(self.progressView != nil) {
+                        self.progressView?.updateProgress(spending: spending, total: total)
+                    }
+                }
+            }, completion: { (error) in
+                // remove the activity here
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.removeActivityProgressView()
+                }
+                
                 if(error == nil) {
-                    // remove the activity here
-                    
                     // refresh tweets table here
-                    
+                    self.refresh()
                     
                     print("Successfully post ALL TWEETS")
                 }
                 else {
                     // display error
                     self.showAlert(titleKey: "Error", messageKey: "Cannot post your tweet because of error: " + (error?.localizedDescription)!)
-                    
-                    print("Error : \(error?.localizedDescription)")
-                    print("STOP posting TWEETS")
                 }
             })
         }
         
     }
     
-    func postSerialTweets(messages:[String], currentMsg:Int, client: TWTRAPIClient, completion: @escaping ((Error?) -> Void)) {
+    func postSerialTweets(messages:[String], currentMsg:Int, client: TWTRAPIClient, progression: @escaping ((Int, Int)->Void),  completion: @escaping ((Error?) -> Void)) {
         
         if currentMsg >= messages.count {
+            progression(currentMsg, messages.count)
+            
             completion(nil)
             
             return
@@ -115,14 +136,33 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
             if ((tweet) != nil) {
                 print("Successfully composed Tweet")
                 
+                progression(currentMsg, messages.count)
+                
                 DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
-                    self.postSerialTweets(messages: messages, currentMsg: currentMsg + 1, client: client, completion: completion)
+                    self.postSerialTweets(messages: messages, currentMsg: currentMsg + 1, client: client,progression: progression, completion: completion)
                 }
                 
                 
             } else {
                 completion(error)
             }
+        }
+    }
+    
+    func addActivityProgressView() {
+        if(self.progressView != nil) {
+            return
+        }
+        
+        self.progressView = Bundle.main.loadNibNamed("ActivityProgressView", owner: self, options: nil)?[0] as! ActivityProgressView
+        
+        self.navigationController?.view.addSubview(self.progressView!)
+    }
+    
+    func removeActivityProgressView() {
+        if(self.progressView != nil) {
+            self.progressView?.removeFromSuperview()
+            self.progressView = nil
         }
     }
     

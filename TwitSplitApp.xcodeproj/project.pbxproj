@@ -14,6 +14,7 @@
 		D25621301F5904FB007E23DA /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256212F1F5904FB007E23DA /* UIViewController+Alert.swift */; };
 		D25621321F590BE6007E23DA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25621311F590BE6007E23DA /* Helper.swift */; };
 		D25621341F590DE8007E23DA /* ActivityProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25621331F590DE8007E23DA /* ActivityProgressView.swift */; };
+		D25621361F59128B007E23DA /* ActivityProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25621351F59128B007E23DA /* ActivityProgressView.xib */; };
 		D2677A471F5673A500F6F1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2677A461F5673A500F6F1D9 /* AppDelegate.swift */; };
 		D2677A491F5673A500F6F1D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2677A481F5673A500F6F1D9 /* ViewController.swift */; };
 		D2677A4C1F5673A500F6F1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2677A4A1F5673A500F6F1D9 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		D256212F1F5904FB007E23DA /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		D25621311F590BE6007E23DA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		D25621331F590DE8007E23DA /* ActivityProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityProgressView.swift; sourceTree = "<group>"; };
+		D25621351F59128B007E23DA /* ActivityProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityProgressView.xib; sourceTree = "<group>"; };
 		D2677A431F5673A500F6F1D9 /* TwitSplitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitSplitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2677A461F5673A500F6F1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2677A481F5673A500F6F1D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				D2677A4D1F5673A500F6F1D9 /* Assets.xcassets */,
 				D2677A4A1F5673A500F6F1D9 /* Main.storyboard */,
 				D2677A4F1F5673A500F6F1D9 /* LaunchScreen.storyboard */,
+				D25621351F59128B007E23DA /* ActivityProgressView.xib */,
 				D2BCDF021F58683900C77CE4 /* Localizable.strings */,
 			);
 			path = TwitSplitApp;
@@ -252,6 +255,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D25621361F59128B007E23DA /* ActivityProgressView.xib in Resources */,
 				D2677A511F5673A500F6F1D9 /* LaunchScreen.storyboard in Resources */,
 				D2BCDF041F58683900C77CE4 /* Localizable.strings in Resources */,
 				D2677A4E1F5673A500F6F1D9 /* Assets.xcassets in Resources */,
