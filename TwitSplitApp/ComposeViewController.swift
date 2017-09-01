@@ -30,24 +30,68 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         
         self.title = "Compose"
         
-        self.textView.placeholder = NSLocalizedString("What's happening", comment: "")
+        self.textView.placeholder = NSLocalizedString("What's happening?", comment: "")
+        
+        prepareForAppearance()
+        
+        NotificationCenter.default.addObserver( self,
+                                                selector: #selector(prepareForAppearance),
+                                                name: .UIApplicationWillEnterForeground,
+                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+        
+        
     }
-    @IBAction func tweetButtonPressed(_ sender: Any) {
-        if((composingDelegate) != nil) {
-            composingDelegate?.composingCompleted(message: (textView.text?.trimmingCharacters(in: .whitespacesAndNewlines))!)
-        }
+    
+    func prepareForAppearance() {
+        self.textView.becomeFirstResponder()
+        textViewDidChange(self.textView)
+    }
+    
+    func dismiss() {
+        self.textView.resignFirstResponder()
         
         self.dismiss(animated: true) {
             
         }
     }
     
+    @IBAction func tweetButtonPressed(_ sender: Any) {
+        if((composingDelegate) != nil) {
+            composingDelegate?.composingCompleted(message: (textView.text?.trimmingCharacters(in: .whitespacesAndNewlines))!)
+        }
+        
+        dismiss()
+    }
+    
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        self.dismiss(animated: true) { 
+        dismiss()
+        
+    }
+    
+    func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
             
+            let contraint = self.view.constraints.filter { $0.identifier == "controlViewContraintBottom" }.first
+            
+            contraint?.constant = keyboardRectangle.height
+            
+            self.view.layoutSubviews()
         }
     }
-
+    
+    func keyboardWillHide(_ notification: Notification) {
+        let contraint = self.view.constraints.filter { $0.identifier == Contants.StoryboardKeys.composingControlViewContraintBottom }.first
+        
+        contraint?.constant = 0
+        
+        self.view.layoutSubviews()
+    }
+    
     // textview delegate
     func textViewDidChange(_ textView: UITextView) {
         
