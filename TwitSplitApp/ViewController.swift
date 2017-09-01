@@ -20,7 +20,7 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.title = NSLocalizedString("TwitSplit", comment: "")
+        self.title = Helper.localizedString(key: "TwitSplit")
         self.tableView.isHidden = true
     }
 
@@ -50,16 +50,25 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
                 
             } else {
                 print("error: \(error?.localizedDescription)")
+                
+                self.showAlert(titleKey: "Error", messageKey: "Cannot login twitter because of error: " + (error?.localizedDescription)!)
+                
             }
         })
     }
     
     func postTweet(message: String) {
         
+        // before chunking, should display an activity.
+        
         let chunks = String.splitMessage(message: message)
         
         if chunks == nil {
-            // display error 
+            // remove the activity here
+            
+            
+            // display error
+            self.showAlert(titleKey: "Error", messageKey: "Cannot chunk the message")
             
             return
             
@@ -75,10 +84,17 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
         DispatchQueue.global().async {
             self.postSerialTweets(messages: chunks!, currentMsg: 0, client: client, completion: { (error) in
                 if(error == nil) {
+                    // remove the activity here
+                    
+                    // refresh tweets table here
+                    
+                    
                     print("Successfully post ALL TWEETS")
                 }
                 else {
-                    // display error 
+                    // display error
+                    self.showAlert(titleKey: "Error", messageKey: "Cannot post your tweet because of error: " + (error?.localizedDescription)!)
+                    
                     print("Error : \(error?.localizedDescription)")
                     print("STOP posting TWEETS")
                 }
