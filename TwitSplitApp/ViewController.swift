@@ -9,7 +9,7 @@
 import UIKit
 import TwitterKit
 
-class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate {
+class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate, WelcomeViewDelegate {
 
     @IBOutlet weak var loginButton: UIBarButtonItem!
     
@@ -18,6 +18,7 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
     var currentSession:TWTRSession? = nil
     
     var progressView:ActivityProgressView? = nil
+    var welcomeView:WelcomeView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,8 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
         self.title = Helper.localizedString(key: "TwitSplit")
         
         self.tableView.isHidden = true
+        
+        self.addWelcomeView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,9 +50,9 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
                     self.refresh()
                     
                     self.tableView.isHidden = false
+                    
+                    self.removeWelcomeView()
                 })
-                
-                
                 
             } else {
                 print("error: \(error?.localizedDescription)")
@@ -156,6 +159,8 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
         
         self.progressView = Bundle.main.loadNibNamed("ActivityProgressView", owner: self, options: nil)?[0] as! ActivityProgressView
         
+        self.progressView?.frame.size = (self.navigationController?.view.frame.size)!
+        
         self.navigationController?.view.addSubview(self.progressView!)
     }
     
@@ -163,6 +168,34 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
         if(self.progressView != nil) {
             self.progressView?.removeFromSuperview()
             self.progressView = nil
+        }
+    }
+    
+    func addWelcomeView() {
+        if(self.welcomeView != nil) {
+            return
+        }
+        
+        self.welcomeView = Bundle.main.loadNibNamed("WelcomeView", owner: self, options: nil)?[0] as! WelcomeView
+        
+        self.welcomeView?.frame.size = (self.navigationController?.view.frame.size)!
+        
+        self.welcomeView?.welcomeDelegate = self
+        
+        self.navigationController?.view.addSubview(self.welcomeView!)
+        
+        self.welcomeView?.faceOut(duration: 0.5)
+    }
+    
+    func removeWelcomeView() {
+        if(self.welcomeView != nil) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                self.welcomeView?.faceIn(duration: 0.5, completion: {
+                    self.welcomeView?.removeFromSuperview()
+                    self.welcomeView = nil
+                })
+            })
+            
         }
     }
     
@@ -183,7 +216,8 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
     
     // handle ibaction here
     @IBAction func loginButtonPressed(_ sender: Any) {
-        loginTwitter()
+        
+        //loginTwitter()
     }
 
     @IBAction func composeButtonPressed(_ sender: Any) {
@@ -191,5 +225,10 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate 
 
     }
     
+    func performLoginTwitter() {
+        
+        loginTwitter()
+    }
+
 }
 

@@ -23,7 +23,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var tweetButton: UIButton!
     @IBOutlet weak var controlView: UIView!
     
-    var composingDelegate:ComposeViewControllerDelegate? = nil
+     var composingDelegate:ComposeViewControllerDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()

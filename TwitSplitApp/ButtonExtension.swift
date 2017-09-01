@@ -39,4 +39,16 @@ class ButtonExtension: UIButton {
             }
         }
     }
+    
+    @IBInspectable var borderWidth: Int = 1 {
+        didSet {
+            layer.borderWidth = CGFloat(borderWidth)
+        }
+    }
+    
+    @IBInspectable var borderUIColor: UIColor = UIColor.white {
+        didSet {
+            layer.borderColor = borderUIColor.cgColor
+        }
+    }
 }
