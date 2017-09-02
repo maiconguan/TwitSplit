@@ -10,6 +10,7 @@
 		3026FBFE26B354133D0B16F5 /* Pods_TwitSplitApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFC90A62637FDFBB1C28B478 /* Pods_TwitSplitApp.framework */; };
 		BA29FBF8FF75FAD703719E51 /* Pods_TwitSplitAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DCF6E6440283E1268547FE /* Pods_TwitSplitAppTests.framework */; };
 		D20838E91F5A4A15009D4E7C /* TwitterUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20838E81F5A4A15009D4E7C /* TwitterUserProfile.swift */; };
+		D20838EB1F5A906C009D4E7C /* About.html in Resources */ = {isa = PBXBuildFile; fileRef = D20838EA1F5A906C009D4E7C /* About.html */; };
 		D210E4381F57E2C1006B487C /* Int+Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D210E4371F57E2C1006B487C /* Int+Shortcuts.swift */; };
 		D256212E1F58FCD3007E23DA /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256212D1F58FCD3007E23DA /* ButtonExtension.swift */; };
 		D25621301F5904FB007E23DA /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256212F1F5904FB007E23DA /* UIViewController+Alert.swift */; };
@@ -51,6 +52,7 @@
 		A49043F9E156B131F49F3E22 /* Pods-TwitSplitApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitSplitApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitSplitApp/Pods-TwitSplitApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CFC90A62637FDFBB1C28B478 /* Pods_TwitSplitApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitSplitApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20838E81F5A4A15009D4E7C /* TwitterUserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserProfile.swift; sourceTree = "<group>"; };
+		D20838EA1F5A906C009D4E7C /* About.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = About.html; sourceTree = "<group>"; };
 		D210E4371F57E2C1006B487C /* Int+Shortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Shortcuts.swift"; sourceTree = "<group>"; };
 		D256212D1F58FCD3007E23DA /* ButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		D256212F1F5904FB007E23DA /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				D25621351F59128B007E23DA /* ActivityProgressView.xib */,
 				D25621371F593C1E007E23DA /* WelcomeView.xib */,
 				D2BCDF021F58683900C77CE4 /* Localizable.strings */,
+				D20838EA1F5A906C009D4E7C /* About.html */,
 			);
 			path = TwitSplitApp;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20838EB1F5A906C009D4E7C /* About.html in Resources */,
 				D25621361F59128B007E23DA /* ActivityProgressView.xib in Resources */,
 				D2677A511F5673A500F6F1D9 /* LaunchScreen.storyboard in Resources */,
 				D2BCDF041F58683900C77CE4 /* Localizable.strings in Resources */,

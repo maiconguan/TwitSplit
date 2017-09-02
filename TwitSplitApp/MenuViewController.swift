@@ -13,9 +13,10 @@ protocol MenuViewControllerDelegate {
     func sideMenuDidClose()
 }
 
-class MenuViewController: UIViewController {
+class MenuViewController: UIViewController, UIWebViewDelegate{
     
     @IBOutlet weak var statusesCountLabel: UILabel!
+    @IBOutlet weak var aboutWebView: UIWebView!
     @IBOutlet weak var friendsCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -25,6 +26,13 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var menuView: UIView!
     
     var menuDelegate:MenuViewControllerDelegate? = nil
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let url = Bundle.main.url(forResource: "About", withExtension: "html")
+        self.aboutWebView.loadRequest(URLRequest(url: url!))
+    }
     
     @IBAction func closeMenuButtonPressed(_ sender: Any) {
         self.closeSideMenu()
@@ -93,5 +101,22 @@ class MenuViewController: UIViewController {
         
         self.bannerImageView.sd_setImage(with: URL(string:path), completed: nil)
     }
+    
+    // handle webview delegate
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        
+        // prevent opening the links inside this webview.
+        if navigationType == UIWebViewNavigationType.linkClicked {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(request.url!, options: [:], completionHandler: nil)
+            } else {
+                // Fallback on earlier versions
+                UIApplication.shared.openURL(request.url!)
+            }
+            return false
+        }
+        return true
+    }
+    
     
 }
