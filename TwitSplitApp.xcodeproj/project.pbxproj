@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3026FBFE26B354133D0B16F5 /* Pods_TwitSplitApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFC90A62637FDFBB1C28B478 /* Pods_TwitSplitApp.framework */; };
 		BA29FBF8FF75FAD703719E51 /* Pods_TwitSplitAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DCF6E6440283E1268547FE /* Pods_TwitSplitAppTests.framework */; };
+		D20838E91F5A4A15009D4E7C /* TwitterUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20838E81F5A4A15009D4E7C /* TwitterUserProfile.swift */; };
 		D210E4381F57E2C1006B487C /* Int+Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D210E4371F57E2C1006B487C /* Int+Shortcuts.swift */; };
 		D256212E1F58FCD3007E23DA /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256212D1F58FCD3007E23DA /* ButtonExtension.swift */; };
 		D25621301F5904FB007E23DA /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256212F1F5904FB007E23DA /* UIViewController+Alert.swift */; };
@@ -49,6 +50,7 @@
 		795A5568538269B7FDA6576E /* Pods-TwitSplitAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitSplitAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitSplitAppTests/Pods-TwitSplitAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A49043F9E156B131F49F3E22 /* Pods-TwitSplitApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitSplitApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitSplitApp/Pods-TwitSplitApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CFC90A62637FDFBB1C28B478 /* Pods_TwitSplitApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitSplitApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D20838E81F5A4A15009D4E7C /* TwitterUserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserProfile.swift; sourceTree = "<group>"; };
 		D210E4371F57E2C1006B487C /* Int+Shortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Shortcuts.swift"; sourceTree = "<group>"; };
 		D256212D1F58FCD3007E23DA /* ButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		D256212F1F5904FB007E23DA /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				D2A1DC071F5996B100959819 /* MenuViewController.swift */,
 				D25621331F590DE8007E23DA /* ActivityProgressView.swift */,
 				D256213A1F593C63007E23DA /* WelcomeView.swift */,
+				D20838E81F5A4A15009D4E7C /* TwitterUserProfile.swift */,
 				D25621311F590BE6007E23DA /* Helper.swift */,
 				D2677A6A1F56DEAB00F6F1D9 /* Contants.swift */,
 				D2BCDEFC1F585C4000C77CE4 /* PlaceholderTextView.swift */,
@@ -404,6 +407,7 @@
 				D2A1DC081F5996B100959819 /* MenuViewController.swift in Sources */,
 				D256213B1F593C63007E23DA /* WelcomeView.swift in Sources */,
 				D2677A6B1F56DEAB00F6F1D9 /* Contants.swift in Sources */,
+				D20838E91F5A4A15009D4E7C /* TwitterUserProfile.swift in Sources */,
 				D25621321F590BE6007E23DA /* Helper.swift in Sources */,
 				D210E4381F57E2C1006B487C /* Int+Shortcuts.swift in Sources */,
 				D2BCDEFD1F585C4000C77CE4 /* PlaceholderTextView.swift in Sources */,

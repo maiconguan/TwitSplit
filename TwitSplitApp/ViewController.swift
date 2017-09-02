@@ -6,6 +6,7 @@
 //  Copyright © 2017 Mai Cong Uan. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import TwitterKit
 
@@ -14,9 +15,8 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     @IBOutlet weak var composeButton: UIBarButtonItem!
-    
-    var currentSession:TWTRSession? = nil
-    var currentUser:TWTRUser? = nil
+
+    var currentUser:TwitterUserProfile = TwitterUserProfile()
     
     var progressView:ActivityProgressView? = nil
     var welcomeView:WelcomeView? = nil
@@ -41,7 +41,7 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
             if (session != nil) {
                 print("signed in as \(session?.userName)");
                 
-                self.currentSession = session
+                self.currentUser.userID = (session?.userID)!
                 
                 DispatchQueue.global().async(execute: {
                     self.getUserProfile()
@@ -56,28 +56,69 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
         })
     }
     
+//    func getUserProfile() {
+//        let client = TWTRAPIClient(userID: self.currentSession?.userID)
+//        client.loadUser(withID: (currentSession?.userID)!) { (user, error) in
+//            self.currentUser = user
+//            
+//            ///
+//            print(user?.profileImageURL)
+//            print(user?.profileImageMiniURL)
+//            print(user?.profileImageLargeURL)
+//            print(user?.profileURL)
+//            print(user?.screenName)
+//            print(user?.formattedScreenName)
+//            print(user?.name)
+//            ///
+//            self.removeWelcomeView()
+//            
+//            DispatchQueue.main.async(execute: {
+//                
+//                
+//                self.title = (user?.name)
+//                
+//                self.dataSource = TWTRUserTimelineDataSource(screenName: (user?.screenName)!, apiClient: TWTRAPIClient())
+//                self.refresh()
+//                self.tableView.isHidden = false
+//                
+//               
+//            })
+//            
+//            self.getProfileBannerImage()
+//        }
+//    }
+    
     func getUserProfile() {
-        let client = TWTRAPIClient(userID: self.currentSession?.userID)
-        client.loadUser(withID: (currentSession?.userID)!) { (user, error) in
-            self.currentUser = user
+        let client = TWTRAPIClient(userID: self.currentUser.userID)
+        
+        let statusesShowEndpoint = "https://api.twitter.com/1.1/users/show.json"
+        let params = ["user_id": self.currentUser.userID] //["screen_name": self.currentUser?.screenName]
+        var clientError : NSError?
+        
+        let request = client.urlRequest(withMethod: "GET", url: statusesShowEndpoint, parameters: params, error: &clientError)
+        
+        client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
+            if connectionError != nil {
+                print("Error: \(connectionError)")
+            }
             
-            ///
-            print(user?.profileImageURL)
-            print(user?.profileImageMiniURL)
-            print(user?.profileImageLargeURL)
-            print(user?.profileURL)
-            print(user?.screenName)
-            print(user?.formattedScreenName)
-            print(user?.name)
-            ///
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                
+                self.currentUser.updateJsonData(json: json)
+                
+            } catch let jsonError as NSError {
+                print("json error: \(jsonError.localizedDescription)")
+            }
+            
             self.removeWelcomeView()
             
             DispatchQueue.main.async(execute: {
                 
                 
-                self.title = (user?.name)
+                self.title = self.currentUser.userName
                 
-                self.dataSource = TWTRUserTimelineDataSource(screenName: (user?.screenName)!, apiClient: TWTRAPIClient())
+                self.dataSource = TWTRUserTimelineDataSource(screenName: self.currentUser.screenName, apiClient: TWTRAPIClient())
                 self.refresh()
                 self.tableView.isHidden = false
                 
@@ -118,7 +159,7 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
             self.progressView?.updateProgress(spending: 0, total: (chunks?.count)!)
         }
         
-        let client = TWTRAPIClient(userID: self.currentSession?.userID)
+        let client = TWTRAPIClient(userID: self.currentUser.userID)
         
         DispatchQueue.global().async {
             self.postSerialTweets(messages: chunks!, currentMsg: 0, client: client,progression: { (spending, total) in
@@ -257,7 +298,7 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
         self.navigationController?.addChildViewController(menuViewCtrl)
        
         //load use's photo
-        menuViewCtrl.displayAvatarImage(path: (self.currentUser?.profileImageLargeURL)!)
+        menuViewCtrl.bindingUserProfileData(data: self.currentUser)
         
         menuViewCtrl.openSideMenu()
     }

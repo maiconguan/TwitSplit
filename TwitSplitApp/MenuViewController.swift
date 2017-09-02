@@ -15,7 +15,13 @@ protocol MenuViewControllerDelegate {
 
 class MenuViewController: UIViewController {
     
+    @IBOutlet weak var statusesCountLabel: UILabel!
+    @IBOutlet weak var friendsCountLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var formatedNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var bannerImageView: UIImageView!
     @IBOutlet weak var menuView: UIView!
     
     var menuDelegate:MenuViewControllerDelegate? = nil
@@ -62,13 +68,30 @@ class MenuViewController: UIViewController {
         }, completion:nil)
     }
     
-    func displayAvatarImage(path: String) {
+    func bindingUserProfileData(data: TwitterUserProfile) {
+        self.displayBannerImage(path: data.profileBannerUrl)
+        self.displayAvatarImage(path: data.profileImageUrl)
+        self.nameLabel.text = data.userName
+        self.formatedNameLabel.text = String("@") + data.screenName
+        self.followersCountLabel.text = String(data.followersCount)
+        self.friendsCountLabel.text = String(data.friendsCount)
+        self.statusesCountLabel.text = String(data.statusesCount)
+    }
+    
+    private func displayAvatarImage(path: String) {
+        print("displayAvatarImage:" + path)
         self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
         self.avatarImageView.clipsToBounds = true
         self.avatarImageView.layer.borderWidth = 5
         self.avatarImageView.layer.borderColor = UIColor.white.cgColor
         
         self.avatarImageView.sd_setImage(with: URL(string:path), completed: nil)
+    }
+    
+    private func displayBannerImage(path: String) {
+        print("displayBannerImage:" + path)
+        
+        self.bannerImageView.sd_setImage(with: URL(string:path), completed: nil)
     }
     
 }
