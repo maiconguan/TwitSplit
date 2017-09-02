@@ -16,6 +16,8 @@ protocol MenuViewControllerDelegate {
 class MenuViewController: UIViewController, UIWebViewDelegate{
     
     @IBOutlet weak var statusesCountLabel: UILabel!
+    @IBOutlet weak var omitEmptySwitch: UISwitch!
+    @IBOutlet weak var reverseSwitch: UISwitch!
     @IBOutlet weak var aboutWebView: UIWebView!
     @IBOutlet weak var friendsCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
@@ -30,8 +32,14 @@ class MenuViewController: UIViewController, UIWebViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // loading about
         let url = Bundle.main.url(forResource: "About", withExtension: "html")
         self.aboutWebView.loadRequest(URLRequest(url: url!))
+        
+        // loading setting
+        let settingValue = Helper.loadSetting()
+        self.reverseSwitch.isOn = settingValue.first!
+        self.omitEmptySwitch.isOn = settingValue.last!
     }
     
     @IBAction func closeMenuButtonPressed(_ sender: Any) {
@@ -39,6 +47,9 @@ class MenuViewController: UIViewController, UIWebViewDelegate{
     }
     
     func closeSideMenu() {
+        // save setting 
+        Helper.saveSetting(reversePostingOrder: self.reverseSwitch.isOn, omittingEmptySequence: self.omitEmptySwitch.isOn)
+        
         let menuFrame = self.menuView.frame
         
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
@@ -87,7 +98,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate{
     }
     
     private func displayAvatarImage(path: String) {
-        print("displayAvatarImage:" + path)
+        //print("displayAvatarImage:" + path)
         self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
         self.avatarImageView.clipsToBounds = true
         self.avatarImageView.layer.borderWidth = 5
@@ -97,7 +108,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate{
     }
     
     private func displayBannerImage(path: String) {
-        print("displayBannerImage:" + path)
+        //print("displayBannerImage:" + path)
         
         self.bannerImageView.sd_setImage(with: URL(string:path), completed: nil)
     }

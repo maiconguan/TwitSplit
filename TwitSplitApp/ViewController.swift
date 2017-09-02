@@ -128,12 +128,17 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
     }
     
     func postTweet(message: String) {
+        // load setting
+        let settingValue = Helper.loadSetting()
+        let reversePostingOrder = settingValue.first!
+        let omitEmptySequence = settingValue.last!
+        
         // before sending tweets, should display an activity.
         DispatchQueue.main.async {
             self.addActivityProgressView()
         }
         
-        let chunks = String.splitMessage(message: message)
+        var chunks = String.splitMessage(message: message, omittingEmptySubsequences: omitEmptySequence)
         
         if chunks == nil {
             // remove the activity here
@@ -152,6 +157,10 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
         // print out for debug
         for chunk in chunks! {
             print(chunk + "    ==> \(chunk.length())" )
+        }
+        
+        if reversePostingOrder {
+            chunks = chunks?.reversed()
         }
         
         // before sending tweets, should display an activity.
