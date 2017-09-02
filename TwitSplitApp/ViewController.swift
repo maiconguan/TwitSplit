@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import TwitterKit
 
-class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate, WelcomeViewDelegate, MenuViewControllerDelegate {
+class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, ComposeViewControllerDelegate, WelcomeViewDelegate, MenuViewControllerDelegate {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
@@ -29,6 +29,8 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
         self.tableView.isHidden = true
         
         self.addWelcomeView()
+        
+        self.tweetViewDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -323,7 +325,11 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
         loginTwitter()
     }
     
-    
+    // handle TWTRTweetViewDelegate
+    // implement this func to avoid opening Safari or Twitter app when tapping on a tweet.
+    func tweetView(_ tweetView: TWTRTweetView, didTap tweet: TWTRTweet) {
+        print(tweet.text)
+    }
 
 }
 

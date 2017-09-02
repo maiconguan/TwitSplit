@@ -76,7 +76,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             
-            let contraint = self.view.constraints.filter { $0.identifier == "controlViewContraintBottom" }.first
+            let contraint = self.view.constraints.filter { $0.identifier == Contants.StoryboardKeys.composingControlViewContraintBottom}.first
             
             contraint?.constant = keyboardRectangle.height
             
