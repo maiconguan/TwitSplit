@@ -106,8 +106,10 @@ extension String {
         }
         
         // adding indicator 
-        for i in 0..<(chunks.count) {
-            chunks[i] = chunks[i].appendingIndicator(current: i + 1, total: chunks.count)
+        if(chunks.count > 1) {
+            for i in 0..<(chunks.count) {
+                chunks[i] = chunks[i].appendingIndicator(current: i + 1, total: chunks.count)
+            }
         }
         
         return chunks

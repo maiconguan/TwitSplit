@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <body bgcolor="#EBEBEB">
+        
+<h2>Author</h2>
+<ul>
+    <li>Name   : <a href="https://github.com/maiconguan">Mai Cong Uan</a></li>
+    <li>Email  : <a href="mailto:maiconguan@gmail">maiconguan@gmail.com</a></li>
+    <li>Mobile : <a href="tel:0907504429">(+84) 0907.504.429</a></li>
+</ul>
+
+<h2>TwitSplit</h2>
+
+    <p>The product Tweeter allows users to post short messages limited to 50 characters each.
+    Sometimes, users get excited and write messages longer than 50 characters.
+    Instead of rejecting these messages, we would like to add a new feature that will split the message into parts and send multiple messages on the user's behalf, all of them meeting the 50 character requirement.</p>
+    
+    <p>Example</p>
+    
+    <p> Suppose the user wants to send the following message:</p>
+    
+    <p>"I can't believe Tweeter now supports chunking my messages, so I don't have to do it myself."</p>
+    
+    <p>This is 91 characters excluding the surrounding quotes. When the user presses send, it will send the following messages:</p>
+    
+    <p>"1/2 I can't believe Tweeter now supports chunking"</p>
+    
+    <p>"2/2 my messages, so I don't have to do it myself."</p>
+    
+    <p>Each message is now 49 characters, each within the allowed limit.</p>
+    
+    <h2>Features</h2>
+    
+    <ul>
+        <li>An application that serves the Tweeter interface.</li>
+        <li>Allow the user to input and send messages.</li>
+        <li>Display the user's messages.</li>
+        <li>If a user's input is greater than 50 characters, split it into chunks that
+            each is less than or equal to 50 characters and post each chunk as a separate message.</li>
+        <li>Messages will only be split on whitespace. If the message contains a span of non-whitespace characters longer than 50 characters, display an error.</li>
+        <li>Split messages will have a "part indicator" appended to the beginning of each section.</li>
+    </ul>
+    
+    <h2>Requirements</h2>
+    
+    <ul>
+        <li>iOS 9.1 or later</li>
+        <li>Xcode 8.3 or later</li>
+        <li>Swift 3.0</li>
+    </ul>
+    
+    <h2>Getting Started</h2>
+    
+    <ul>
+        <li>Read this Readme doc</li>
+        <li>Try the apllication by downloading the project from Github at <a href="https://github.com/maiconguan/TwitSplit.git">here</a></li>
+    </ul>
+    
+    <h2>Communication</h2>
+    
+    <ul>
+        <li>If you <strong>need help</strong>/<strong>ask a general question</strong>/<strong>found a bug</strong>/<strong>have a feature request</strong> or <strong>want to contribute</strong>, please contact me via email: <a href="mailto:maiconguan@gmail" target="_top">maiconguan@gmail.com</a>  </li>
+    </ul>
+    
+    <h2>Build Project</h2>
+    
+    <p>At this point your workspace should build without error. If you are having problem, please contact me so that I can help you solve it.</p>
+    
+
+    </body>
+</html>

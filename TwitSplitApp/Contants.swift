@@ -17,5 +17,9 @@ struct Contants {
         
     }
     
+    struct SettingKeys {
+        static let kReversePostingOrder = "reversePostingOrder"
+        static let kOmittingEmptySequence = "omittingEmptySequence"
+    }
     
 }
