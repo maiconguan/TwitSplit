@@ -9,13 +9,14 @@
 import UIKit
 import TwitterKit
 
-class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate, WelcomeViewDelegate {
+class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate, WelcomeViewDelegate, MenuViewControllerDelegate {
 
-    @IBOutlet weak var loginButton: UIBarButtonItem!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     @IBOutlet weak var composeButton: UIBarButtonItem!
     
     var currentSession:TWTRSession? = nil
+    var currentUser:TWTRUser? = nil
     
     var progressView:ActivityProgressView? = nil
     var welcomeView:WelcomeView? = nil
@@ -42,16 +43,8 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
                 
                 self.currentSession = session
                 
-                DispatchQueue.main.async(execute: {
-                    self.title = (session?.userName)
-                    
-                    self.dataSource = TWTRUserTimelineDataSource(screenName: (session?.userName)!, apiClient: TWTRAPIClient())
-                    
-                    self.refresh()
-                    
-                    self.tableView.isHidden = false
-                    
-                    self.removeWelcomeView()
+                DispatchQueue.global().async(execute: {
+                    self.getUserProfile()
                 })
                 
             } else {
@@ -61,6 +54,36 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
                 
             }
         })
+    }
+    
+    func getUserProfile() {
+        let client = TWTRAPIClient(userID: self.currentSession?.userID)
+        client.loadUser(withID: (currentSession?.userID)!) { (user, error) in
+            self.currentUser = user
+            
+            ///
+            print(user?.profileImageURL)
+            print(user?.profileImageMiniURL)
+            print(user?.profileImageLargeURL)
+            print(user?.profileURL)
+            print(user?.screenName)
+            print(user?.formattedScreenName)
+            print(user?.name)
+            ///
+            self.removeWelcomeView()
+            
+            DispatchQueue.main.async(execute: {
+                
+                
+                self.title = (user?.name)
+                
+                self.dataSource = TWTRUserTimelineDataSource(screenName: (user?.screenName)!, apiClient: TWTRAPIClient())
+                self.refresh()
+                self.tableView.isHidden = false
+                
+               
+            })
+        }
     }
     
     func postTweet(message: String) {
@@ -189,7 +212,8 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
     
     func removeWelcomeView() {
         if(self.welcomeView != nil) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            self.welcomeView?.isUserInteractionEnabled = false
+            DispatchQueue.main.async(execute: {
                 self.welcomeView?.faceIn(duration: 0.5, completion: {
                     self.welcomeView?.removeFromSuperview()
                     self.welcomeView = nil
@@ -215,9 +239,8 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
     }
     
     // handle ibaction here
-    @IBAction func loginButtonPressed(_ sender: Any) {
-        
-        //loginTwitter()
+    @IBAction func menuButtonPressed(_ sender: Any) {
+        openMenuView()
     }
 
     @IBAction func composeButtonPressed(_ sender: Any) {
@@ -225,10 +248,32 @@ class ViewController: TWTRTimelineViewController, ComposeViewControllerDelegate,
 
     }
     
+    func openMenuView() {
+        
+        let menuViewCtrl = self.storyboard!.instantiateViewController(withIdentifier: Contants.StoryboardKeys.menuViewController) as! MenuViewController
+        
+        menuViewCtrl.menuDelegate = self
+        self.navigationController?.view.addSubview(menuViewCtrl.view)
+        self.navigationController?.addChildViewController(menuViewCtrl)
+       
+        //load use's photo
+        menuViewCtrl.displayAvatarImage(path: (self.currentUser?.profileImageLargeURL)!)
+        
+        menuViewCtrl.openSideMenu()
+    }
+    
+    //handle MenuViewControllerDelegate
+    func sideMenuDidClose() {
+        
+    }
+    
+    // handle WelcomeViewDelegate
     func performLoginTwitter() {
         
         loginTwitter()
     }
+    
+    
 
 }
 

@@ -45,7 +45,7 @@ class WelcomeView : UIView {
                        delay: 0.0,
                        options: [.curveLinear],
                        animations: { () -> Void in
-                            self.logoImage.transform = CGAffineTransform(scaleX: 14.0, y: 14.0)
+                            self.logoImage.transform = CGAffineTransform(scaleX: 20.0, y: 20.0)
                         }){ (animationCompleted: Bool) -> Void in
                             
                             completion!()
@@ -63,7 +63,7 @@ class WelcomeView : UIView {
     
     func boundingEffect(duration: TimeInterval = 1.0) {
         
-        logoImage.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        logoImage.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         
         UIView.animate(withDuration: duration,
                        delay: 0,
