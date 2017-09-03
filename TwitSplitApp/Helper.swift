@@ -23,4 +23,11 @@ class Helper {
         let defaults = UserDefaults.standard
         return [defaults.bool(forKey: Contants.SettingKeys.kReversePostingOrder), defaults.bool(forKey: Contants.SettingKeys.kOmittingEmptySequence)]
     }
+    
+    static func localizerFunction() -> ((_ key: String, _ params: CVaListPointer) -> String) {
+        return { (key: String, params: CVaListPointer) in
+            let content = Helper.localizedString(key: key)
+            return NSString(format: content, arguments: params) as String
+        }
+    }
 }

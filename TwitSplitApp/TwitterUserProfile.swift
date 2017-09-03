@@ -35,4 +35,16 @@ struct TwitterUserProfile {
 
         
     }
+    
+    mutating func renew() -> Void {
+        self.userID = ""
+        self.userName = ""
+        self.followersCount = 0
+        self.friendsCount = 0
+        self.profileBannerUrl = ""
+        self.profileImageUrl = ""
+        self.screenName = ""
+        self.statusesCount = 0
+        
+    }
 }

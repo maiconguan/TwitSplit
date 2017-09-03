@@ -26,22 +26,42 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
         // Do any additional setup after loading the view, typically from a nib.
         self.title = Helper.localizedString(key: "TwitSplit")
         
-        self.tableView.isHidden = true
-        
-        self.addWelcomeView()
-        
         self.tweetViewDelegate = self
+        
+        self.startApp()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func startApp(autoLogin: Bool = true) {
+        self.tableView.isHidden = true
+        
+        self.addWelcomeView()
+        self.welcomeView?.isActivityHidden(!autoLogin)
+        
+        if autoLogin {
+            let store = Twitter.sharedInstance().sessionStore
+            
+            if(store.hasLoggedInUsers()) {
+                self.currentUser.userID = (store.session()?.userID)!
+                DispatchQueue.global().async(execute: {
+                    self.getUserProfile()
+                })
+            }
+            else {
+                // hide activity and show login button
+                self.welcomeView?.isActivityHidden(true)
+            }
+        }
+    }
 
     func loginTwitter() {
         Twitter.sharedInstance().logIn(completion: { (session, error) in
             if (session != nil) {
-                print("signed in as \(session?.userName)");
+                //print("signed in as \(session?.userName)");
                 
                 self.currentUser.userID = (session?.userID)!
                 
@@ -50,45 +70,16 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
                 })
                 
             } else {
-                print("error: \(error?.localizedDescription)")
+                //print("error: \(error?.localizedDescription)")
+                // hide activity and show login button
+                self.welcomeView?.isActivityHidden(true)
                 
-                self.showAlert(titleKey: "Error", messageKey: "Cannot login twitter because of error: " + (error?.localizedDescription)!)
+                // show error message
+                self.showAlert(titleKey: "Error", messageKey: "Cannot login Twitter because of error: %@", [(error?.localizedDescription)!])
                 
             }
         })
     }
-    
-//    func getUserProfile() {
-//        let client = TWTRAPIClient(userID: self.currentSession?.userID)
-//        client.loadUser(withID: (currentSession?.userID)!) { (user, error) in
-//            self.currentUser = user
-//            
-//            ///
-//            print(user?.profileImageURL)
-//            print(user?.profileImageMiniURL)
-//            print(user?.profileImageLargeURL)
-//            print(user?.profileURL)
-//            print(user?.screenName)
-//            print(user?.formattedScreenName)
-//            print(user?.name)
-//            ///
-//            self.removeWelcomeView()
-//            
-//            DispatchQueue.main.async(execute: {
-//                
-//                
-//                self.title = (user?.name)
-//                
-//                self.dataSource = TWTRUserTimelineDataSource(screenName: (user?.screenName)!, apiClient: TWTRAPIClient())
-//                self.refresh()
-//                self.tableView.isHidden = false
-//                
-//               
-//            })
-//            
-//            self.getProfileBannerImage()
-//        }
-//    }
     
     func getUserProfile() {
         let client = TWTRAPIClient(userID: self.currentUser.userID)
@@ -101,31 +92,43 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
         
         client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             if connectionError != nil {
-                print("Error: \(connectionError)")
+                // hide activity and show login button
+                self.welcomeView?.isActivityHidden(true)
+                
+                // show error message
+                self.showAlert(titleKey: "Error", messageKey: "Cannot get user info because of error: %@", [(connectionError?.localizedDescription)!])
             }
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                
-                self.currentUser.updateJsonData(json: json)
-                
-            } catch let jsonError as NSError {
-                print("json error: \(jsonError.localizedDescription)")
+            else {
+                do {
+                    //only use for test exception
+                    //let data = "[{'zip':'''''}]".data(using: .utf8)
+                    
+                    let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                    
+                    self.currentUser.updateJsonData(json: json)
+                    
+                    self.removeWelcomeView()
+                    
+                    DispatchQueue.main.async(execute: {
+                        
+                        
+                        self.title = self.currentUser.userName
+                        
+                        self.dataSource = TWTRUserTimelineDataSource(screenName: self.currentUser.screenName, apiClient: TWTRAPIClient())
+                        self.refresh()
+                        self.tableView.isHidden = false
+                        
+                        
+                    })
+                    
+                } catch let jsonError as NSError {
+                    // hide activity and show login button
+                    self.welcomeView?.isActivityHidden(true)
+                    
+                    // show error msg
+                    self.showAlert(titleKey: "Error", messageKey: "Cannot get user info because of error: %@", [jsonError.localizedDescription])
+                }
             }
-            
-            self.removeWelcomeView()
-            
-            DispatchQueue.main.async(execute: {
-                
-                
-                self.title = self.currentUser.userName
-                
-                self.dataSource = TWTRUserTimelineDataSource(screenName: self.currentUser.screenName, apiClient: TWTRAPIClient())
-                self.refresh()
-                self.tableView.isHidden = false
-                
-               
-            })
         }
     }
     
@@ -150,7 +153,7 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
 
             
             // display error
-            self.showAlert(titleKey: "Error", messageKey: "Cannot chunk the message")
+            self.showAlert(titleKey: "Error", messageKey: "Cannot chunk the message! Maybe your message contains a span of non-whitespace characters longer than %d characters", [Contants.maxMessageLength])
             
             return
             
@@ -193,7 +196,7 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
                 }
                 else {
                     // display error
-                    self.showAlert(titleKey: "Error", messageKey: "Cannot post your tweet because of error: " + (error?.localizedDescription)!)
+                    self.showAlert(titleKey: "Error", messageKey: "Cannot post your tweet because of error: \"%@\"", [(error?.localizedDescription)!])
                 }
             })
         }
@@ -319,8 +322,26 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
         
     }
     
+    func sideMenuLogout() {
+        let store = Twitter.sharedInstance().sessionStore
+        if(store.session()?.userID == self.currentUser.userID) {
+            store.logOutUserID(self.currentUser.userID)
+            print("logout successfully")
+            
+            self.currentUser.renew()
+            
+            // should open a welcome screen here
+            self.startApp(autoLogin: false)
+        }
+        else {
+            print("logout already logout")
+        }
+    }
+    
     // handle WelcomeViewDelegate
     func performLoginTwitter() {
+        // hide activity and show login button
+        self.welcomeView?.isActivityHidden(true)
         
         loginTwitter()
     }
