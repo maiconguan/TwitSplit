@@ -17,6 +17,7 @@ class WelcomeView : UIView {
     
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var loginButton: ButtonExtension!
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     var welcomeDelegate: WelcomeViewDelegate? = nil
     
@@ -29,7 +30,12 @@ class WelcomeView : UIView {
     }
     
     private func privateInit() {
-        
+        activityView.startAnimating()
+    }
+    
+    func isActivityHidden(_ value: Bool) {
+        activityView.isHidden = value
+        loginButton.isHidden = !value
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {

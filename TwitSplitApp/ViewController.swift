@@ -40,6 +40,7 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
         self.tableView.isHidden = true
         
         self.addWelcomeView()
+        self.welcomeView?.isActivityHidden(!autoLogin)
         
         if autoLogin {
             let store = Twitter.sharedInstance().sessionStore
@@ -49,6 +50,10 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
                 DispatchQueue.global().async(execute: {
                     self.getUserProfile()
                 })
+            }
+            else {
+                // hide activity and show login button
+                self.welcomeView?.isActivityHidden(true)
             }
         }
     }
@@ -66,7 +71,10 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
                 
             } else {
                 //print("error: \(error?.localizedDescription)")
+                // hide activity and show login button
+                self.welcomeView?.isActivityHidden(true)
                 
+                // show error message
                 self.showAlert(titleKey: "Error", messageKey: "Cannot login Twitter because of error: %@", [(error?.localizedDescription)!])
                 
             }
@@ -84,10 +92,17 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
         
         client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             if connectionError != nil {
+                // hide activity and show login button
+                self.welcomeView?.isActivityHidden(true)
+                
+                // show error message
                 self.showAlert(titleKey: "Error", messageKey: "Cannot get user info because of error: %@", [(connectionError?.localizedDescription)!])
             }
             else {
                 do {
+                    //only use for test exception
+                    //let data = "[{'zip':'''''}]".data(using: .utf8)
+                    
                     let json = try JSONSerialization.jsonObject(with: data!, options: [])
                     
                     self.currentUser.updateJsonData(json: json)
@@ -107,6 +122,10 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
                     })
                     
                 } catch let jsonError as NSError {
+                    // hide activity and show login button
+                    self.welcomeView?.isActivityHidden(true)
+                    
+                    // show error msg
                     self.showAlert(titleKey: "Error", messageKey: "Cannot get user info because of error: %@", [jsonError.localizedDescription])
                 }
             }
@@ -321,6 +340,8 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
     
     // handle WelcomeViewDelegate
     func performLoginTwitter() {
+        // hide activity and show login button
+        self.welcomeView?.isActivityHidden(true)
         
         loginTwitter()
     }
