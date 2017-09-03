@@ -46,7 +46,9 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
             
             if(store.hasLoggedInUsers()) {
                 self.currentUser.userID = (store.session()?.userID)!
-                self.getUserProfile()
+                DispatchQueue.global().async(execute: {
+                    self.getUserProfile()
+                })
             }
         }
     }
@@ -54,7 +56,7 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
     func loginTwitter() {
         Twitter.sharedInstance().logIn(completion: { (session, error) in
             if (session != nil) {
-                print("signed in as \(session?.userName)");
+                //print("signed in as \(session?.userName)");
                 
                 self.currentUser.userID = (session?.userID)!
                 
@@ -63,9 +65,9 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
                 })
                 
             } else {
-                print("error: \(error?.localizedDescription)")
+                //print("error: \(error?.localizedDescription)")
                 
-                self.showAlert(titleKey: "Error", messageKey: "Cannot login twitter because of error: " + (error?.localizedDescription)!)
+                self.showAlert(titleKey: "Error", messageKey: "Cannot login Twitter because of error: %@", [(error?.localizedDescription)!])
                 
             }
         })
@@ -82,31 +84,32 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
         
         client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             if connectionError != nil {
-                print("Error: \(connectionError)")
+                self.showAlert(titleKey: "Error", messageKey: "Cannot get user info because of error: %@", [(connectionError?.localizedDescription)!])
             }
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                
-                self.currentUser.updateJsonData(json: json)
-                
-            } catch let jsonError as NSError {
-                print("json error: \(jsonError.localizedDescription)")
+            else {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                    
+                    self.currentUser.updateJsonData(json: json)
+                    
+                    self.removeWelcomeView()
+                    
+                    DispatchQueue.main.async(execute: {
+                        
+                        
+                        self.title = self.currentUser.userName
+                        
+                        self.dataSource = TWTRUserTimelineDataSource(screenName: self.currentUser.screenName, apiClient: TWTRAPIClient())
+                        self.refresh()
+                        self.tableView.isHidden = false
+                        
+                        
+                    })
+                    
+                } catch let jsonError as NSError {
+                    self.showAlert(titleKey: "Error", messageKey: "Cannot get user info because of error: %@", [jsonError.localizedDescription])
+                }
             }
-            
-            self.removeWelcomeView()
-            
-            DispatchQueue.main.async(execute: {
-                
-                
-                self.title = self.currentUser.userName
-                
-                self.dataSource = TWTRUserTimelineDataSource(screenName: self.currentUser.screenName, apiClient: TWTRAPIClient())
-                self.refresh()
-                self.tableView.isHidden = false
-                
-               
-            })
         }
     }
     
@@ -131,7 +134,7 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
 
             
             // display error
-            self.showAlert(titleKey: "Error", messageKey: "Cannot chunk the message")
+            self.showAlert(titleKey: "Error", messageKey: "Cannot chunk the message! Maybe your message contains a span of non-whitespace characters longer than %d characters", [Contants.maxMessageLength])
             
             return
             
@@ -174,7 +177,7 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
                 }
                 else {
                     // display error
-                    self.showAlert(titleKey: "Error", messageKey: "Cannot post your tweet because of error: " + (error?.localizedDescription)!)
+                    self.showAlert(titleKey: "Error", messageKey: "Cannot post your tweet because of error: \"%@\"", [(error?.localizedDescription)!])
                 }
             })
         }
