@@ -26,16 +26,29 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
         // Do any additional setup after loading the view, typically from a nib.
         self.title = Helper.localizedString(key: "TwitSplit")
         
-        self.tableView.isHidden = true
-        
-        self.addWelcomeView()
-        
         self.tweetViewDelegate = self
+        
+        self.startApp()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func startApp(autoLogin: Bool = true) {
+        self.tableView.isHidden = true
+        
+        self.addWelcomeView()
+        
+        if autoLogin {
+            let store = Twitter.sharedInstance().sessionStore
+            
+            if(store.hasLoggedInUsers()) {
+                self.currentUser.userID = (store.session()?.userID)!
+                self.getUserProfile()
+            }
+        }
     }
 
     func loginTwitter() {
@@ -57,38 +70,6 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
             }
         })
     }
-    
-//    func getUserProfile() {
-//        let client = TWTRAPIClient(userID: self.currentSession?.userID)
-//        client.loadUser(withID: (currentSession?.userID)!) { (user, error) in
-//            self.currentUser = user
-//            
-//            ///
-//            print(user?.profileImageURL)
-//            print(user?.profileImageMiniURL)
-//            print(user?.profileImageLargeURL)
-//            print(user?.profileURL)
-//            print(user?.screenName)
-//            print(user?.formattedScreenName)
-//            print(user?.name)
-//            ///
-//            self.removeWelcomeView()
-//            
-//            DispatchQueue.main.async(execute: {
-//                
-//                
-//                self.title = (user?.name)
-//                
-//                self.dataSource = TWTRUserTimelineDataSource(screenName: (user?.screenName)!, apiClient: TWTRAPIClient())
-//                self.refresh()
-//                self.tableView.isHidden = false
-//                
-//               
-//            })
-//            
-//            self.getProfileBannerImage()
-//        }
-//    }
     
     func getUserProfile() {
         let client = TWTRAPIClient(userID: self.currentUser.userID)
@@ -317,6 +298,22 @@ class ViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, Compose
     //handle MenuViewControllerDelegate
     func sideMenuDidClose() {
         
+    }
+    
+    func sideMenuLogout() {
+        let store = Twitter.sharedInstance().sessionStore
+        if(store.session()?.userID == self.currentUser.userID) {
+            store.logOutUserID(self.currentUser.userID)
+            print("logout successfully")
+            
+            self.currentUser.renew()
+            
+            // should open a welcome screen here
+            self.startApp(autoLogin: false)
+        }
+        else {
+            print("logout already logout")
+        }
     }
     
     // handle WelcomeViewDelegate
