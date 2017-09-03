@@ -29,8 +29,8 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ojv-Lv-2HK" customClass="ButtonExtension" customModule="TwitSplitApp" customModuleProvider="target">
-                    <rect key="frame" x="87.5" y="557.5" width="221.5" height="47"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ojv-Lv-2HK" customClass="ButtonExtension" customModule="TwitSplitApp" customModuleProvider="target">
+                    <rect key="frame" x="95.5" y="557.5" width="221.5" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <state key="normal" title=" Log in with Twitter">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,9 +61,14 @@
                     <rect key="frame" x="37" y="118" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ybZ-Nk-Et0">
+                    <rect key="frame" x="189" y="563" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.21385663747787476" green="0.6100192666053772" blue="0.90085774660110474" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
+                <outlet property="activityView" destination="ybZ-Nk-Et0" id="Nhg-OB-hAq"/>
                 <outlet property="loginButton" destination="Ojv-Lv-2HK" id="Oia-Yf-HmQ"/>
                 <outlet property="logoImage" destination="a72-fL-ooh" id="e3g-dq-f5F"/>
             </connections>

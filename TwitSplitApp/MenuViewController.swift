@@ -11,6 +11,7 @@ import SDWebImage
 
 protocol MenuViewControllerDelegate {
     func sideMenuDidClose()
+    func sideMenuLogout()
 }
 
 class MenuViewController: UIViewController, UIWebViewDelegate{
@@ -46,9 +47,31 @@ class MenuViewController: UIViewController, UIWebViewDelegate{
         self.closeSideMenu()
     }
     
-    func closeSideMenu() {
+    @IBAction func logoutButtonPressed(_ sender: Any) {
+        if self.menuDelegate != nil {
+            self.menuDelegate?.sideMenuLogout()
+            
+            self.closeSideMenu(animated: false)
+        }
+    }
+    
+    func remvoveMenuView() {
+        self.view.removeFromSuperview()
+        self.removeFromParentViewController()
+        
+        if self.menuDelegate != nil {
+            self.menuDelegate?.sideMenuDidClose()
+        }
+    }
+    
+    func closeSideMenu(animated: Bool = true) {
         // save setting 
         Helper.saveSetting(reversePostingOrder: self.reverseSwitch.isOn, omittingEmptySequence: self.omitEmptySwitch.isOn)
+        
+        if !animated {
+            self.remvoveMenuView()
+            return
+        }
         
         let menuFrame = self.menuView.frame
         
@@ -60,17 +83,16 @@ class MenuViewController: UIViewController, UIWebViewDelegate{
             self.view.layoutIfNeeded()
             
         }, completion: { (finished) -> Void in
-            self.view.removeFromSuperview()
-            self.removeFromParentViewController()
-            
-            if self.menuDelegate != nil {
-                self.menuDelegate?.sideMenuDidClose()
-            }
+            self.remvoveMenuView()
             
         })
     }
     
-    func openSideMenu() {
+    func openSideMenu(animated: Bool = true) {
+        if !animated {
+            return
+        }
+        
         let menuFrame = self.menuView.frame
         
         self.menuView.frame = CGRect(x: -menuFrame.size.width,

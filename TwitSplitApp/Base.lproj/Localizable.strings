@@ -7,7 +7,23 @@
 */
 
 "TwitSplit" = "TwitSplit";
+
 "What's happening?" = "What's happening?";
+
 "OK" = "OK";
+
 "Cancel" = "Cancel";
+
 "Error" = "Error";
+
+"Cannot chunk the message! Maybe your message contains a span of non-whitespace characters longer than %d characters" = "Cannot chunk the message! Maybe your message contains a span of non-whitespace characters longer than %d characters";
+
+"Cannot login Twitter because of error: %@" = "Cannot login Twitter because of error: \"%@\"";
+
+"Cannot get user info because of error: %@" = "Cannot get user info because of error: \"%@\"";
+
+"Cannot post your tweet because of error: \"%@\"" = "Cannot post your tweet because of error: \"%@\"\n\n*NOTE: A user cannot submit the same status twice in a row.";
+
+
+
+
