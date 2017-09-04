@@ -25,15 +25,37 @@ struct TwitterUserProfile {
         
         let jsonDict = json as? Dictionary<String, Any>
         
-        self.userName           = jsonDict?["name"] as! String
-        self.followersCount     = jsonDict?["followers_count"] as! Int
-        self.friendsCount       = jsonDict?["friends_count"] as! Int
-        self.profileBannerUrl   = jsonDict?["profile_banner_url"] as! String
-        self.profileImageUrl    = jsonDict?["profile_image_url_https"] as! String
-        self.screenName         = jsonDict?["screen_name"] as! String
-        self.statusesCount      = jsonDict?["statuses_count"] as! Int
-
+        if let userName = jsonDict?["name"] {
+            self.userName = userName as! String
+        }
         
+        if let userName = jsonDict?["name"] {
+            self.userName = userName as! String
+        }
+        
+        if let followersCount = jsonDict?["followers_count"] {
+            self.followersCount = followersCount as! Int
+        }
+        
+        if let friendsCount = jsonDict?["friends_count"] {
+            self.friendsCount = friendsCount as! Int
+        }
+        
+        if let profileBannerUrl = jsonDict?["profile_banner_url"] {
+            self.profileBannerUrl = profileBannerUrl as! String
+        }
+        
+        if let profileImageUrl = jsonDict?["profile_image_url_https"] {
+            self.profileImageUrl = profileImageUrl as! String
+        }
+        
+        if let screenName = jsonDict?["screen_name"] {
+            self.screenName = screenName as! String
+        }
+        
+        if let statusesCount = jsonDict?["statuses_count"] {
+            self.statusesCount = statusesCount as! Int
+        }
     }
     
     mutating func renew() -> Void {
